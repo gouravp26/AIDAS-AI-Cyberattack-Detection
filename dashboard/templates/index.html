@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080e19">
+  <title>AIDAS | Security Command Center</title>
+  <style>
+    :root{color-scheme:dark;--bg:#080e19;--panel:#111c2d;--panel2:#142238;--line:#25354b;--text:#ecf3ff;--muted:#92a4bd;--accent:#67d8f6;--green:#54ddb3;--amber:#f3c36b;--red:#ff8799;--radius:18px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse 60% 40% at 80% -10%,#17365088,transparent),var(--bg);color:var(--text);font:14px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}button,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.48;cursor:not-allowed}a{color:inherit;text-decoration:none}a:focus-visible,button:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+    .app{display:grid;grid-template-columns:248px minmax(0,1fr);min-height:100vh}.sidebar{position:sticky;top:0;height:100vh;background:#0b1423;border-right:1px solid var(--line);padding:30px 18px;display:flex;flex-direction:column;gap:36px}.brand{display:flex;align-items:center;gap:12px;padding:0 12px}.logo{width:42px;height:42px;display:grid;place-items:center;border:1px solid #35677c;border-radius:13px;background:linear-gradient(140deg,#163d52,#122136);color:var(--accent);font-size:23px}.brand strong{font-size:21px;letter-spacing:.12em}.brand small{display:block;font-size:10px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase}.nav-label{font-size:10px;letter-spacing:.2em;color:#6f839f;text-transform:uppercase;padding:0 14px 12px}.nav{display:grid;gap:6px}.nav a{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:11px;color:var(--muted);transition:.2s}.nav a:hover,.nav a.active{background:#192a40;color:var(--text)}.nav a.active{box-shadow:inset 3px 0 var(--accent)}.nav .icon{font-size:17px;width:22px;text-align:center}.side-bottom{margin-top:auto;padding:16px;border:1px solid var(--line);border-radius:14px;background:#101d2e}.side-bottom small{color:var(--muted)}.main{min-width:0;padding:30px clamp(18px,3.5vw,56px) 55px;max-width:1650px;width:100%;margin:auto}.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:32px}.breadcrumb{color:var(--muted);font-size:12px;letter-spacing:.08em;text-transform:uppercase}.top-right{display:flex;align-items:center;gap:12px}.clock{color:var(--muted);font-variant-numeric:tabular-nums}.pill{display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border:1px solid var(--line);border-radius:100px;background:#152238;color:var(--muted);font-size:12px}.dot{width:7px;height:7px;border-radius:50%;background:var(--amber);box-shadow:0 0 0 3px #f3c36b19}.dot.good{background:var(--green);box-shadow:0 0 0 3px #54ddb31c}.dot.bad{background:var(--red)}.hero{display:flex;align-items:flex-end;justify-content:space-between;gap:22px;margin-bottom:27px}.eyebrow{color:var(--accent);text-transform:uppercase;letter-spacing:.18em;font-weight:700;font-size:11px}.hero h1{font-size:clamp(29px,3.5vw,44px);line-height:1.14;letter-spacing:-.045em;margin:8px 0 10px}.hero p{color:var(--muted);margin:0;max-width:720px}.hero-badge{flex-shrink:0;border:1px solid #24576a;background:#112c3b;color:#a7edff;border-radius:12px;padding:12px 16px;font-size:12px}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-bottom:22px}.stat,.card{background:linear-gradient(145deg,#142137,#101a2b);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 10px 35px #00000016}.stat{padding:21px}.stat .label{color:var(--muted);font-size:12px}.stat .value{font-size:27px;font-weight:750;letter-spacing:-.04em;margin-top:8px}.stat .hint{font-size:11px;color:var(--muted);margin-top:5px}.value.green{color:var(--green)}.value.cyan{color:var(--accent)}.value.amber{color:var(--amber)}.section{scroll-margin-top:22px;margin-bottom:22px}.grid{display:grid;grid-template-columns:1.15fr .85fr;gap:20px}.card{padding:24px;min-width:0}.card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:18px}.card h2{font-size:17px;letter-spacing:-.02em;margin:0 0 5px}.sub{color:var(--muted);font-size:12px;margin:0}.tag{border:1px solid #305064;border-radius:8px;color:var(--accent);font-size:10px;letter-spacing:.09em;padding:5px 8px;white-space:nowrap}.controls{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:18px 0}.select{min-height:42px;border:1px solid #334963;border-radius:10px;padding:0 12px;background:#0c1828;color:var(--text);min-width:175px}.btn{min-height:42px;border-radius:10px;border:1px solid #375069;background:#1b2c43;color:var(--text);padding:0 16px;font-weight:650;transition:transform .15s,background .15s}.btn:hover:not(:disabled){transform:translateY(-1px);background:#263b55}.btn.primary{background:var(--accent);color:#071623;border-color:var(--accent)}.btn.primary:hover:not(:disabled){background:#a0eafa}.btn.danger{border-color:#774351;color:#ffb8c1;background:#321d2a}.notice{background:#152a39;border:1px solid #2b5364;border-radius:12px;color:#b3d6e2;padding:13px 15px;font-size:12px}.notice.warn{background:#2b261d;border-color:#625036;color:#e9d2a7}.result-box{background:#0b1727;border:1px solid #243a51;border-radius:14px;padding:18px;margin-top:16px}.result-title{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.13em}.result-main{font-size:25px;font-weight:750;letter-spacing:-.025em;margin:6px 0}.result-meta{display:flex;flex-wrap:wrap;gap:12px;color:var(--muted);font-size:12px}.prob{display:grid;gap:10px;margin-top:16px}.prob-row{display:grid;grid-template-columns:minmax(95px,1fr) 2fr 50px;align-items:center;gap:12px;font-size:12px}.prob-row span:first-child{overflow-wrap:anywhere}.track{height:8px;border-radius:99px;background:#24354a;overflow:hidden}.fill{height:100%;background:linear-gradient(90deg,#298bb2,var(--accent));border-radius:99px}.prob-row .pct{text-align:right;color:var(--muted)}.kv{display:grid;gap:11px}.kv-row{display:flex;justify-content:space-between;gap:15px;padding:10px 0;border-bottom:1px solid #24354a}.kv-row:last-child{border:0}.kv-row span:first-child{color:var(--muted)}.kv-row strong{text-align:right;overflow-wrap:anywhere}.split{display:grid;grid-template-columns:1fr 1fr;gap:20px}.metric-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.metric{padding:16px;background:#0b1727;border:1px solid #263b52;border-radius:12px}.metric .n{font-size:24px;font-weight:750}.metric .t{font-size:11px;color:var(--muted)}.table-wrap{overflow-x:auto;border:1px solid #283a51;border-radius:12px}table{width:100%;border-collapse:collapse;text-align:left;font-size:12px}th,td{padding:12px 14px;border-bottom:1px solid #25354a;vertical-align:top}th{color:var(--muted);font-weight:650;background:#101e30;white-space:nowrap}td{overflow-wrap:anywhere}tbody tr:last-child td{border-bottom:0}tbody tr:hover{background:#ffffff05}.empty{padding:22px;color:var(--muted);text-align:center}.muted{color:var(--muted)}.footer{margin-top:30px;color:#72869f;font-size:12px;display:flex;justify-content:space-between;gap:12px}.error{color:var(--red)}.success{color:var(--green)}.loader{display:inline-block;width:13px;height:13px;border:2px solid #55748b;border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:7px}@keyframes spin{to{transform:rotate(360deg)}}.hidden{display:none!important}
+    @media(max-width:1150px){.stats{grid-template-columns:repeat(2,1fr)}.grid,.split{grid-template-columns:1fr}}@media(max-width:780px){.app{display:block}.sidebar{position:static;height:auto;padding:16px;gap:14px}.brand{padding:0}.nav-label,.side-bottom{display:none}.nav{display:flex;overflow-x:auto;gap:5px}.nav a{white-space:nowrap;padding:9px 11px}.main{padding:22px 15px 40px}.hero{align-items:flex-start;flex-direction:column}.topbar{margin-bottom:22px}.clock{display:none}}@media(max-width:480px){.stats{grid-template-columns:1fr 1fr;gap:10px}.stat{padding:15px}.stat .value{font-size:21px}.card{padding:17px}.metric-grid{grid-template-columns:1fr 1fr}.hero-badge{display:none}.controls .btn,.controls .select{flex:1}.footer{flex-direction:column}}
+
+    /* AIDAS original network intelligence visualizer */
+    :root{--accent:#35d6ed;--violet:#a78bfa;--bg:#070b13;--panel:#101827;--panel2:#172235}
+    body{background:radial-gradient(ellipse 55% 35% at 65% 0%,#182c4e80,transparent),radial-gradient(ellipse 45% 45% at 100% 65%,#231c3a33,transparent),var(--bg)}
+    .sidebar{background:#0a101d}.logo{color:#c7f8ff;background:linear-gradient(135deg,#183d51,#222044);box-shadow:0 0 30px #35d6ed19}.brand strong{font-weight:850}.hero h1{font-size:clamp(34px,4vw,52px)}.card,.stat{background:linear-gradient(150deg,#131e30,#0e1625)}
+    .graph-card{padding:24px;overflow:hidden;border-color:#2a4058;background:linear-gradient(125deg,#111c2e,#0c1423 70%)}.graph-title{font-size:clamp(21px,2.3vw,29px)!important;margin:7px 0!important}.graph-accent{color:var(--accent)}.graph-layout{display:grid;grid-template-columns:minmax(0,1fr) 245px;gap:18px}.graph-stage{height:440px;position:relative;border:1px solid #253b50;border-radius:14px;background:radial-gradient(ellipse at 50% 48%,#16344a90,transparent 60%),#080f1c;overflow:hidden}.graph-grid{position:absolute;inset:0;pointer-events:none;opacity:.32;background-image:linear-gradient(#2e4c652e 1px,transparent 1px),linear-gradient(90deg,#2e4c652e 1px,transparent 1px);background-size:34px 34px;mask-image:radial-gradient(ellipse,black,transparent 95%)}#networkSVG{position:absolute;inset:0;width:100%;height:100%;touch-action:none}.graph-edge{stroke:#3b9fc0;stroke-opacity:.35;stroke-width:1.5}.graph-edge.active{stroke:var(--accent);stroke-opacity:.9;stroke-width:2.4}.graph-node{cursor:grab;outline:none}.graph-node:active{cursor:grabbing}.graph-node:focus .node-core{stroke:#fff;stroke-width:3}.node-halo{fill:#35d6ed;fill-opacity:.07;stroke:#35d6ed;stroke-opacity:.22}.node-core{fill:#153f57;stroke:#58d9ef;stroke-width:1.5;transition:fill .2s}.graph-node:hover .node-core,.graph-node.selected .node-core{fill:#4a86a4;stroke:#d7fbff;stroke-width:2.6}.node-label{font-size:11px;fill:#a8c6d8;pointer-events:none;paint-order:stroke;stroke:#08111f;stroke-width:3px;stroke-linejoin:round}.graph-empty{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:9px;color:#8ba5ba;pointer-events:none;padding:24px}.graph-empty strong{color:#d8e9f4;font-size:16px}.graph-empty span:last-child{max-width:310px;font-size:12px}.graph-empty-icon{font-size:54px;color:#35d6ed7a;line-height:1.1}.graph-caption{position:absolute;bottom:12px;left:15px;right:15px;display:flex;justify-content:space-between;gap:10px;font-size:9px;letter-spacing:.14em;color:#7898ae;pointer-events:none}.graph-inspector{background:#0b1524;border:1px solid #24394f;border-radius:14px;padding:18px;min-width:0}.inspector-heading{color:#8eabc2;letter-spacing:.15em;font-size:10px;font-weight:750;margin-bottom:16px}.inspector-empty{color:var(--muted);font-size:12px;min-height:88px}.inspector-separator{height:1px;background:#25364a;margin:20px 0}.inspector-note{font-size:11px;color:#88a3b8;line-height:1.7;margin-top:20px}.inspector-address{color:#b4f1ff;overflow-wrap:anywhere;font-size:15px;font-weight:750;margin:6px 0 12px}.graph-inspector .kv-row{font-size:11px}.graph-inspector .kv-row strong{max-width:130px}.graph-help{font-size:11px;color:#7e9aaf}.graph-legend{display:inline-flex;gap:6px;align-items:center}.graph-legend:before{content:'';width:7px;height:7px;border-radius:50%;background:var(--accent)}
+    @media(max-width:1100px){.graph-layout{grid-template-columns:1fr}.graph-inspector{display:grid;grid-template-columns:1fr 1fr;column-gap:20px}.graph-inspector .inspector-separator{display:none}.graph-inspector .inspector-heading:nth-of-type(2){grid-column:2;grid-row:1}.graph-inspector .kv{grid-column:2;grid-row:2}.inspector-note{grid-column:1/-1;margin-top:12px}}
+    @media(max-width:580px){.graph-stage{height:330px}.graph-inspector{display:block}.graph-inspector .inspector-separator{display:block}.graph-caption span{display:none}.graph-card{padding:16px}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+    /* AIDAS / FUTURE SIGNAL — decorative visual system; observed data remains real */
+    :root{--accent:#37e6ff;--violet:#a78bfa}
+    body:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,transparent 49.9%,#37e6ff07 50%,transparent 50.1%),linear-gradient(transparent 49.9%,#37e6ff06 50%,transparent 50.1%);background-size:70px 70px;mask-image:linear-gradient(90deg,transparent,#000 40%,#000 90%);animation:ambientShift 28s linear infinite}
+    @keyframes ambientShift{to{background-position:70px 70px}}
+    .logo{box-shadow:0 0 24px #37e6ff26,inset 0 0 12px #37e6ff12}
+    .nav a{position:relative}.nav a.active{background:linear-gradient(90deg,#17445c99,#1b2844);box-shadow:inset 3px 0 var(--accent),0 0 24px #35d6ed12}.nav a.active:after{content:"";position:absolute;right:12px;width:5px;height:5px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent)}
+    .stat,.card{position:relative;transition:border-color .25s,box-shadow .25s,transform .25s}.stat:hover,.card:hover{border-color:#37617a;box-shadow:0 16px 40px #0003,0 0 22px #35d6ed0c}.stat:hover{transform:translateY(-2px)}
+    .stat:before{content:"";position:absolute;inset:0 auto auto 16px;width:50px;height:2px;background:linear-gradient(90deg,var(--accent),transparent);opacity:.65}
+    .hero h1{background:linear-gradient(110deg,#fff 15%,#d4e8ff 62%,#69e9ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .eyebrow{animation:eyebrowGlow 4s ease-in-out infinite alternate}@keyframes eyebrowGlow{to{text-shadow:0 0 16px #37e6ff80}}
+    .graph-card{box-shadow:0 0 0 1px #37e6ff0a,0 20px 65px #0004;isolation:isolate}
+    .graph-stage{height:460px;background:radial-gradient(ellipse at 50% 50%,#0c2b4299,transparent 66%),radial-gradient(circle at 70% 28%,#6b44a21a,transparent 37%),#050d1a;border-color:#28516c;box-shadow:inset 0 0 75px #03111c,0 0 22px #35d6ed0b}
+    .graph-grid{opacity:.48;background-size:38px 38px;animation:gridDrift 30s linear infinite}@keyframes gridDrift{to{background-position:76px 76px}}
+    .radar-rings{position:absolute;left:50%;top:50%;width:min(78%,410px);aspect-ratio:1;transform:translate(-50%,-50%);border:1px solid #37e6ff21;border-radius:50%;pointer-events:none;box-shadow:0 0 50px #35d6ed09,inset 0 0 45px #35d6ed06}
+    .radar-rings:before,.radar-rings:after{content:"";position:absolute;border:1px solid #37e6ff25;border-radius:50%;inset:19%}.radar-rings:after{inset:38%}
+    .radar-crosshair{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,transparent calc(50% - .5px),#37e6ff18 50%,transparent calc(50% + .5px)),linear-gradient(transparent calc(50% - .5px),#37e6ff18 50%,transparent calc(50% + .5px))}
+    .radar-sweep{position:absolute;left:50%;top:50%;width:min(78%,410px);aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;background:conic-gradient(from 0deg,transparent 0deg,transparent 285deg,#35d6ed05 318deg,#35d6ed24 349deg,#35d6ed55 359deg,transparent 360deg);animation:radarSpin 9s linear infinite;mask-image:radial-gradient(circle,#000 0 69%,transparent 72%)}
+    @keyframes radarSpin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+    .graph-stars{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.72}
+    .graph-stage:before,.graph-stage:after{content:"";position:absolute;width:26px;height:26px;border:solid #35d6ed85;pointer-events:none;z-index:3}.graph-stage:before{top:12px;left:12px;border-width:1px 0 0 1px}.graph-stage:after{bottom:12px;right:12px;border-width:0 1px 1px 0}
+    #networkSVG{z-index:2}.graph-edge{stroke:#4bc5e9;stroke-opacity:.53;stroke-width:1.6;stroke-dasharray:5 9;animation:flowDash 4s linear infinite;filter:drop-shadow(0 0 3px #35d6ed70)}.graph-edge.active{stroke:#c5a6ff;stroke-opacity:1;stroke-width:2.8;filter:drop-shadow(0 0 6px #a78bfa)}@keyframes flowDash{to{stroke-dashoffset:-56}}
+    .node-halo{fill:#35d6ed;fill-opacity:.07;stroke:#35d6ed;stroke-opacity:.48;stroke-width:1;filter:drop-shadow(0 0 6px #35d6ed);animation:nodePulse 2.8s ease-in-out infinite alternate}@keyframes nodePulse{to{stroke-opacity:.9;fill-opacity:.16}}
+    .node-core{fill:#154a63;stroke:#80f0ff;stroke-width:2;filter:drop-shadow(0 0 6px #35d6ed)}
+    .graph-empty{z-index:3;justify-content:center;gap:10px}.graph-empty-icon{font-size:49px;color:#74eaff;text-shadow:0 0 18px #35d6ed8c;animation:idlePulse 3s ease-in-out infinite alternate}@keyframes idlePulse{to{opacity:.55;transform:scale(1.1)}}
+    .graph-empty strong{font-size:17px;text-shadow:0 0 12px #08111f}.graph-empty span:last-child{color:#a0b9ce}
+    .graph-caption{z-index:4}.graph-inspector{background:linear-gradient(180deg,#0b192a,#0b1423);box-shadow:inset 0 1px #35d6ed14}.inspector-heading{color:#8edff1}.tag{box-shadow:0 0 12px #35d6ed0b}
+    .btn.primary{box-shadow:0 0 18px #35d6ed2e}.btn.primary:hover:not(:disabled){box-shadow:0 0 27px #35d6ed62}
+    .dot.good{animation:statusPulse 2s ease-in-out infinite}@keyframes statusPulse{50%{box-shadow:0 0 0 6px #54ddb318,0 0 12px #54ddb366}}
+    .scanline{position:absolute;left:0;right:0;top:-20%;height:22%;pointer-events:none;z-index:1;background:linear-gradient(transparent,#37e6ff08,transparent);animation:scanMove 12s linear infinite}@keyframes scanMove{to{top:110%}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+  </style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar" aria-label="Main navigation">
+    <div class="brand"><div class="logo" aria-hidden="true">⬡</div><div><strong>AIDAS</strong><small>Security Intelligence</small></div></div>
+    <div><div class="nav-label">Workspace</div><nav class="nav">
+      <a class="active" href="#overview"><span class="icon">◈</span>Overview</a>
+      <a href="#network"><span class="icon">✧</span>Network Graph</a>
+      <a href="#detection"><span class="icon">◎</span>Attack Detection</a>
+      <a href="#models"><span class="icon">▥</span>Model Performance</a>
+      <a href="#anomaly"><span class="icon">◇</span>Anomaly Analysis</a>
+      <a href="#live"><span class="icon">◉</span>Live Monitoring</a>
+    </nav></div>
+    <div class="side-bottom"><div class="pill"><span class="dot good"></span>Research prototype</div><p style="margin:12px 0 0"><small>Dataset-based ML and live traffic monitoring are separate, independently demonstrated functions.</small></p></div>
+  </aside>
+  <main class="main">
+    <div class="topbar"><span class="breadcrumb">Security Workspace / Overview</span><div class="top-right"><span id="clock" class="clock"></span><span class="pill"><span class="dot" id="apiDot"></span><span id="apiBadge">Checking API</span></span></div></div>
+    <header class="hero" id="overview"><div><div class="eyebrow">AI-assisted network security</div><h1>Security Command Center<span style="color:var(--accent)">.</span></h1><p>Monitor network activity, evaluate trained classifiers, and explore anomaly detection—all in one research dashboard.</p></div><div class="hero-badge">AIDAS · EXPERIMENTAL BUILD</div></header>
+    <section class="stats" aria-label="System overview">
+      <div class="stat"><div class="label">API Connection</div><div class="value" id="apiValue">Checking…</div><div class="hint">Flask backend status</div></div>
+      <div class="stat"><div class="label">Saved Classifiers</div><div class="value cyan">03</div><div class="hint">LR · Decision Tree · RF</div></div>
+      <div class="stat"><div class="label">Captured Packets</div><div class="value" id="packetValue">0</div><div class="hint" id="captureHint">Monitoring inactive</div></div>
+      <div class="stat"><div class="label">Live ML Validation</div><div class="value amber">Pending</div><div class="hint">Live predictions not enabled</div></div>
+    </section>
+
+    <section class="card section graph-card" id="network" aria-label="Observed network graph">
+      <div class="card-head"><div><div class="eyebrow">NETWORK INTELLIGENCE / 01</div><h2 class="graph-title">Network topology <span class="graph-accent">visualizer</span></h2><p class="sub">Interactive map of observed source–destination pairs from the live-flow API.</p></div><span class="pill"><span class="dot" id="graphDot"></span><span id="graphMode">AWAITING CAPTURE</span></span></div>
+      <div class="graph-layout"><div class="graph-stage" id="graphStage"><div class="graph-grid"></div><div class="radar-rings" aria-hidden="true"></div><div class="radar-crosshair" aria-hidden="true"></div><div class="radar-sweep" aria-hidden="true"></div><canvas class="graph-stars" id="graphStars" aria-hidden="true"></canvas><div class="scanline" aria-hidden="true"></div><svg id="networkSVG" viewBox="0 0 900 440" role="img" aria-label="Observed network connections. Select a node for details."><g id="graphEdges"></g><g id="graphNodes"></g></svg><div class="graph-empty" id="graphEmpty"><span class="graph-empty-icon">◎</span><strong>No observed network flows</strong><span>Start live monitoring to populate this graph with real captured connections.</span></div><div class="graph-caption">AIDAS / OBSERVED FLOW TOPOLOGY <span>DRAG NODES · SELECT FOR DETAILS</span></div></div>
+      <aside class="graph-inspector"><div class="inspector-heading">CONNECTION INSPECTOR</div><div id="nodeInspector" class="inspector-empty">Select a node to inspect its observed connections.</div><div class="inspector-separator"></div><div class="inspector-heading">VISUALIZATION STATUS</div><div class="kv"><div class="kv-row"><span>Observed nodes</span><strong id="graphNodeCount">0</strong></div><div class="kv-row"><span>Observed links</span><strong id="graphLinkCount">0</strong></div><div class="kv-row"><span>Source</span><strong>Live flow API</strong></div><div class="kv-row"><span>ML verdicts</span><strong class="muted">Not enabled</strong></div></div><div class="inspector-note">Node size indicates observed connections, not attack severity. Connections are shown only when the API provides endpoint identifiers.</div></aside></div>
+    </section>
+    <div class="grid section">
+      <section class="card" id="detection"><div class="card-head"><div><h2>Dataset-Based Attack Detection</h2><p class="sub">Analyze a compatible UNSW-NB15 dataset sample.</p></div><span class="tag">SUPERVISED ML</span></div>
+        <div class="controls"><label for="modelSelect" class="muted">Model</label><select id="modelSelect" class="select"><option value="random_forest">Random Forest</option><option value="decision_tree">Decision Tree</option><option value="logistic_regression">Logistic Regression</option></select><button class="btn primary" id="predictBtn">Analyze Sample →</button></div>
+        <div class="notice">This analyzes saved dataset features—not packets captured from the live network.</div>
+        <div id="predictionBox" class="result-box" aria-live="polite"><div class="result-title">Classification result</div><div class="result-main muted">Awaiting analysis</div><p class="sub">Select a model and run a sample.</p></div>
+      </section>
+      <section class="card"><div class="card-head"><div><h2>System Overview</h2><p class="sub">Backend status and feature boundaries.</p></div><span class="tag">SYSTEM</span></div><div class="kv" id="systemDetails"><div class="empty">Loading system information…</div></div><div class="notice warn" style="margin-top:18px">AIDAS does not claim validated zero-day detection or live ML attack classification.</div></section>
+    </div>
+    <section class="card section" id="models"><div class="card-head"><div><h2>Model Performance</h2><p class="sub">Evaluation results reported by the Flask backend.</p></div><span class="tag">EVALUATION</span></div><div id="modelResults" class="empty">Loading evaluation data…</div></section>
+    <section class="card section" id="anomaly"><div class="card-head"><div><h2>Anomaly Detection</h2><p class="sub">Isolation Forest on a compatible dataset sample.</p></div><span class="tag">UNSUPERVISED ML</span></div><div class="controls"><button class="btn primary" id="anomalyBtn">Analyze Sample Anomaly →</button></div><div class="notice">An anomaly score indicates statistical unusualness; it is not proof of an attack or a previously unseen threat.</div><div id="anomalyResult" class="result-box" aria-live="polite"><div class="result-title">Anomaly result</div><div class="result-main muted">Awaiting analysis</div></div></section>
+    <section class="card section" id="live"><div class="card-head"><div><h2>Live Network Monitoring</h2><p class="sub">Passive packet capture and flow summaries from the local network interface.</p></div><span class="tag">LIVE TRAFFIC</span></div><div class="controls"><button class="btn primary" id="startBtn">● Start Monitoring</button><button class="btn danger" id="stopBtn" disabled>■ Stop Monitoring</button><button class="btn" id="refreshBtn">↻ Refresh Flows</button><span class="pill"><span class="dot" id="liveDot"></span><span id="liveState">Inactive</span></span></div><div class="notice warn">Capture only traffic you own or are authorized to inspect. Live flow features are not validated as UNSW-NB15 model inputs; this section does not produce ML attack predictions.</div><div class="metric-grid" style="margin:18px 0"><div class="metric"><div class="n" id="livePackets">0</div><div class="t">Packets captured</div></div><div class="metric"><div class="n" id="liveFlowCount">0</div><div class="t">Flows displayed</div></div><div class="metric"><div class="n" id="liveInterface">—</div><div class="t">Capture interface</div></div></div><div id="liveError" class="error" role="alert"></div><div class="table-wrap"><table><thead id="flowHead"><tr><th>Flow</th><th>Protocol</th><th>Packets</th><th>Bytes</th></tr></thead><tbody id="flowBody"><tr><td colspan="4" class="empty">No flows yet. Start monitoring to view captured traffic.</td></tr></tbody></table></div><p class="sub" style="margin-top:12px">Flow data refreshes every 2 seconds while monitoring is active.</p></section>
+    <footer class="footer"><span>© AIDAS · AI-Powered Cyberattack Detection and Unknown Attack Identification System</span><span>Academic research prototype · Not a production IDS</span></footer>
+  </main>
+</div>
+<script>
+'use strict';
+const $ = id => document.getElementById(id);
+let latestSample = null;
+let liveBusy = false;
+let flowRefreshBusy = false;
+const safeText = value => value === null || value === undefined || value === '' ? '—' : String(value);
+const fmt = value => typeof value === 'number' && Number.isFinite(value) ? value.toLocaleString() : safeText(value);
+const escapeHTML = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function setHTML(id, html){$(id).innerHTML = html;}
+function keyValue(label,value){return `<div class="kv-row"><span>${escapeHTML(label)}</span><strong>${escapeHTML(safeText(value))}</strong></div>`;}
+function prettyName(key){return String(key).replace(/_/g,' ').replace(/\b\w/g,c=>c.toUpperCase());}
+async function getJSON(url,options={}){
+  const response=await fetch(url,{cache:'no-store',...options});
+  const raw=await response.text();let data;
+  try{data=raw?JSON.parse(raw):{};}catch{throw new Error(`Invalid JSON from ${url}`);}
+  if(!response.ok)throw new Error(data.error||data.message||`Request failed (${response.status})`);
+  return data;
+}
+function jsonPOST(url,payload){return getJSON(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});}
+function errorBox(message){return `<div class="result-title error">Request failed</div><p class="error">${escapeHTML(message)}</p>`;}
+function busyButton(button,busy,label){button.disabled=busy;button.textContent=busy?'Working…':label;}
+function pick(obj,keys){if(!obj||typeof obj!=='object')return undefined;for(const k of keys)if(obj[k]!==undefined&&obj[k]!==null)return obj[k];return undefined;}
+function boolText(value){return value===true?'Yes':value===false?'No':safeText(value);}
+function updateClock(){$('clock').textContent=new Date().toLocaleString(undefined,{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});}
+async function loadStatus(){
+  try{
+    const s=await getJSON('/api/status');$('apiDot').className='dot good';$('apiBadge').textContent='API Connected';$('apiValue').textContent='Online';$('apiValue').className='value green';
+    const rows=[['Backend','Connected'],['Live ML validated',boolText(pick(s,['live_ml_validated']))]];
+    for(const [k,v] of Object.entries(s)){if(['live_ml_validated'].includes(k))continue;if(v===null||['string','number','boolean'].includes(typeof v))rows.push([prettyName(k),v]);}
+    setHTML('systemDetails',rows.slice(0,10).map(([k,v])=>keyValue(k,v)).join(''));
+  }catch(e){$('apiDot').className='dot bad';$('apiBadge').textContent='API Unavailable';$('apiValue').textContent='Offline';$('apiValue').className='value';setHTML('systemDetails',`<p class="error">${escapeHTML(e.message)}</p>`);}
+}
+async function getSample(){const s=await getJSON('/api/sample');if(!s.features||typeof s.features!=='object')throw new Error('Sample response did not include features.');latestSample=s;return s;}
+function renderPrediction(data,sample){
+  const prediction=pick(data,['prediction','predicted_category','predicted_class','class']);
+  const model=pick(data,['model'])||$('modelSelect').selectedOptions[0].text;
+  const actual=pick(sample,['actual_attack_category','attack_cat','actual_category']);
+  const actualLabel=pick(sample,['actual_label','label']);
+  const probs=pick(data,['class_probabilities','probabilities']);
+  let bars='';
+  if(probs&&typeof probs==='object'&&!Array.isArray(probs)){
+    const entries=Object.entries(probs).filter(([,v])=>Number.isFinite(Number(v))).sort((a,b)=>Number(b[1])-Number(a[1])).slice(0,10);
+
+    bars=`<div class="prob">${entries.map(([name,p])=>{const v=Number(p);const pct=v<=1?v*100:v;return `<div class="prob-row"><span>${escapeHTML(name)}</span><div class="track"><div class="fill" style="width:${Math.min(100,Math.max(0,pct))}%"></div></div><span class="pct">${pct.toFixed(1)}%</span></div>`;}).join('')}</div>`;
+  }
+  const meta=[['Model',model],['Actual category',actual],['Actual binary label',actualLabel],['Dataset-based',data.live_prediction===false?'Yes':'Sample features']];
+  return `<div class="result-title">Predicted category</div><div class="result-main">${escapeHTML(safeText(prediction))}</div><div class="kv">${meta.map(([k,v])=>keyValue(k,v)).join('')}</div>${bars}`;
+}
+async function runPrediction(){const btn=$('predictBtn');busyButton(btn,true,'Analyze Sample →');setHTML('predictionBox','<span class="loader"></span>Analyzing dataset sample…');try{const sample=await getSample();const data=await jsonPOST('/api/predict',{model:$('modelSelect').value,features:sample.features});setHTML('predictionBox',renderPrediction(data,sample));}catch(e){setHTML('predictionBox',errorBox(e.message));}finally{busyButton(btn,false,'Analyze Sample →');}}
+async function runAnomaly(){const btn=$('anomalyBtn');busyButton(btn,true,'Analyze Sample Anomaly →');setHTML('anomalyResult','<span class="loader"></span>Running Isolation Forest…');try{const sample=await getSample();const d=await jsonPOST('/api/anomaly',{features:sample.features});const pred=pick(d,['prediction','anomaly_prediction']);const interpretation=pick(d,['interpretation','status','result']);const score=pick(d,['score','anomaly_score','decision_score']);const rows=[['Interpretation',interpretation??(pred===-1?'Outlier / anomaly':pred===1?'Inlier':'—')],['Raw prediction',pred],['Score',score],['Live ML validated',boolText(d.live_ml_validated)]];setHTML('anomalyResult',`<div class="result-title">Isolation Forest assessment</div><div class="result-main">${escapeHTML(safeText(rows[0][1]))}</div><div class="kv">${rows.slice(1).map(([k,v])=>keyValue(k,v)).join('')}</div>`);}catch(e){setHTML('anomalyResult',errorBox(e.message));}finally{busyButton(btn,false,'Analyze Sample Anomaly →');}}
+function renderEvaluation(data){
+  const candidates=[data?.models,data?.results,data?.evaluation,data?.model_evaluation,data];
+  let source=candidates.find(v=>v&&typeof v==='object'&& !Array.isArray(v)&&Object.values(v).some(x=>x&&typeof x==='object'&&!Array.isArray(x)));
+  if(!source&&Array.isArray(data))source=data;
+  if(!source){setHTML('modelResults',`<div class="notice">Evaluation endpoint responded, but its data is not in a recognized table format.</div><details><summary>View response</summary><pre>${escapeHTML(JSON.stringify(data,null,2))}</pre></details>`);return;}
+  const entries=Array.isArray(source)?source.map((v,i)=>[v.model||v.name||`Model ${i+1}`,v]):Object.entries(source).filter(([,v])=>v&&typeof v==='object'&&!Array.isArray(v));
+  if(!entries.length){setHTML('modelResults','<div class="empty">No model metrics returned.</div>');return;}
+  const keys=['accuracy','macro_f1','f1_macro','precision','recall'];
+  const metric=(obj,aliases)=>{for(const k of aliases)if(obj[k]!==undefined)return obj[k];return '—';};
+  const number=v=>typeof v==='number'?v.toFixed(4):safeText(v);
+  setHTML('modelResults',`<div class="table-wrap"><table><thead><tr><th>Model</th><th>Accuracy</th><th>Macro-F1</th><th>Precision</th><th>Recall</th></tr></thead><tbody>${entries.map(([name,v])=>`<tr><td><strong>${escapeHTML(prettyName(name))}</strong></td><td>${escapeHTML(number(metric(v,['accuracy','test_accuracy'])))}</td><td>${escapeHTML(number(metric(v,['macro_f1','f1_macro','macro_f1_score'])))}</td><td>${escapeHTML(number(metric(v,['precision','macro_precision'])))}</td><td>${escapeHTML(number(metric(v,['recall','macro_recall'])))}</td></tr>`).join('')}</tbody></table></div><p class="sub" style="margin-top:12px">Metrics are displayed as returned by the API; verify the evaluation dataset and averaging method before comparing models.</p>`);
+}
+async function loadEvaluation(){try{renderEvaluation(await getJSON('/api/evaluation'));}catch(e){setHTML('modelResults',`<p class="error">${escapeHTML(e.message)}</p>`);}}
+
+// Graph is generated only from observed /api/live/flows data; no synthetic traffic.
+const SVG_NS='http://www.w3.org/2000/svg';
+const graphState={nodes:new Map(),edges:[],selected:null,drag:null,signature:''};
+const svgEl=(tag,attrs={})=>{const el=document.createElementNS(SVG_NS,tag);for(const [k,v] of Object.entries(attrs))el.setAttribute(k,String(v));return el;};
+function flowEndpoints(flow){
+  if(!flow||typeof flow!=='object')return null;
+  const src=pick(flow,['src_ip','source_ip','src','source','saddr','source_address']);
+  const dst=pick(flow,['dst_ip','destination_ip','dst','destination','daddr','destination_address']);
+  const label=v=>v===undefined||v===null?'':typeof v==='object'?String(pick(v,['ip','address','host'])||''):String(v);
+  const a=label(src).trim(),b=label(dst).trim();return a&&b&&a!==b?[a,b]:null;
+}
+function graphBuild(flows){
+  const nodes=new Map(),edges=new Map();
+  for(const f of flows){const pair=flowEndpoints(f);if(!pair)continue;const [a,b]=pair;
+    if(!nodes.has(a)&&nodes.size>=45)continue;if(!nodes.has(b)&&nodes.size>=45)continue;
+    for(const id of pair){if(!nodes.has(id))nodes.set(id,{id,degree:0,packets:0,flows:0,x:0,y:0});nodes.get(id).flows++;}
+    nodes.get(a).degree++;nodes.get(b).degree++;
+    const n=Number(pick(f,['packet_count','packets','total_packets']));if(Number.isFinite(n)&&n>0){nodes.get(a).packets+=n;nodes.get(b).packets+=n;}
+    const key=[a,b].sort().join('↔');if(!edges.has(key))edges.set(key,{a,b,count:0});edges.get(key).count++;
+    if(edges.size>=90)break;
+  }
+  return {nodes,edges:[...edges.values()]};
+}
+function graphRender(flows,running){
+  const {nodes,edges}=graphBuild(flows);
+  const signature=JSON.stringify([Array.from(nodes.keys()).sort(),edges.map(e=>[e.a,e.b]).sort()]);
+  $('graphNodeCount').textContent=nodes.size;$('graphLinkCount').textContent=edges.length;
+  $('graphDot').className=running?'dot good':'dot';$('graphMode').textContent=running?'CAPTURE ACTIVE':'MONITORING IDLE';
+  $('graphEmpty').classList.toggle('hidden',nodes.size>0);
+  if(signature===graphState.signature){for(const [id,node] of nodes){const old=graphState.nodes.get(id);if(old){old.degree=node.degree;old.packets=node.packets;old.flows=node.flows;}}if(graphState.selected)graphInspect(graphState.selected);return;}
+  graphState.signature=signature;
+  const previous=graphState.nodes;graphState.nodes=nodes;graphState.edges=edges;
+  const entries=[...nodes.values()].sort((a,b)=>a.id.localeCompare(b.id));
+  entries.forEach((n,i)=>{const old=previous.get(n.id);const angle=i*2.399963229728653;const radius=Math.sqrt((i+.5)/Math.max(1,entries.length));n.x=old?.x??450+350*radius*Math.cos(angle);n.y=old?.y??215+165*radius*Math.sin(angle);});
+  const edgeLayer=$('graphEdges'),nodeLayer=$('graphNodes');edgeLayer.replaceChildren();nodeLayer.replaceChildren();
+  for(const edge of edges){const a=nodes.get(edge.a),b=nodes.get(edge.b);const line=svgEl('line',{x1:a.x,y1:a.y,x2:b.x,y2:b.y,class:'graph-edge'});edge.el=line;edgeLayer.append(line);}
+  for(const node of entries){const g=svgEl('g',{class:'graph-node',tabindex:'0',role:'button','aria-label':`Inspect ${node.id}`});const size=Math.min(13,5+Math.sqrt(node.degree)*2);g.append(svgEl('circle',{r:size+11,class:'node-halo'}),svgEl('circle',{r:size,class:'node-core'}));const label=svgEl('text',{x:0,y:size+19,'text-anchor':'middle',class:'node-label'});label.textContent=node.id.length>24?node.id.slice(0,21)+'…':node.id;g.append(label);g.setAttribute('transform',`translate(${node.x} ${node.y})`);node.el=g;
+    g.addEventListener('click',()=>graphInspect(node.id));g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();graphInspect(node.id);}});
+    g.addEventListener('pointerdown',e=>{if(e.button!==0)return;graphState.drag={id:node.id,pointer:e.pointerId};g.setPointerCapture(e.pointerId);});
+    g.addEventListener('pointermove',e=>{if(graphState.drag?.id!==node.id)return;const pt=svgPoint(e);node.x=Math.max(25,Math.min(875,pt.x));node.y=Math.max(24,Math.min(405,pt.y));graphMove();});
+    g.addEventListener('pointerup',()=>graphState.drag=null);g.addEventListener('pointercancel',()=>graphState.drag=null);nodeLayer.append(g);
+  }
+  if(graphState.selected&&!nodes.has(graphState.selected))graphState.selected=null;
+  graphInspect(graphState.selected);
+}
+function svgPoint(e){const svg=$('networkSVG'),p=svg.createSVGPoint();p.x=e.clientX;p.y=e.clientY;const m=svg.getScreenCTM();return m?p.matrixTransform(m.inverse()):{x:450,y:220};}
+function graphMove(){for(const n of graphState.nodes.values())n.el?.setAttribute('transform',`translate(${n.x} ${n.y})`);for(const e of graphState.edges){const a=graphState.nodes.get(e.a),b=graphState.nodes.get(e.b);if(e.el){e.el.setAttribute('x1',a.x);e.el.setAttribute('y1',a.y);e.el.setAttribute('x2',b.x);e.el.setAttribute('y2',b.y);}}}
+function graphInspect(id){graphState.selected=id;for(const n of graphState.nodes.values())n.el?.classList.toggle('selected',n.id===id);for(const e of graphState.edges)e.el?.classList.toggle('active',!!id&&(e.a===id||e.b===id));
+  if(!id||!graphState.nodes.has(id)){$('nodeInspector').innerHTML='<div class="inspector-empty">Select a node to inspect its observed connections.</div>';return;}
+  const n=graphState.nodes.get(id);const neighbors=[...new Set(graphState.edges.filter(e=>e.a===id||e.b===id).map(e=>e.a===id?e.b:e.a))];
+  $('nodeInspector').innerHTML=`<div class="graph-help">OBSERVED ENDPOINT</div><div class="inspector-address">${escapeHTML(id)}</div><div class="kv">${keyValue('Connected endpoints',neighbors.length)}${keyValue('Flow entries',n.flows)}${keyValue('Reported packets',n.packets||'Not provided')}</div><div class="graph-help" style="margin-top:12px">Peers: ${escapeHTML(neighbors.slice(0,5).join(', ')||'—')}${neighbors.length>5?' …':''}</div>`;
+}
+
+function updateLiveStatus(s){
+  const running=Boolean(s?.running);$('liveDot').className=running?'dot good':'dot';$('liveState').textContent=running?'Monitoring active':'Inactive';$('startBtn').disabled=running||liveBusy;$('stopBtn').disabled=!running||liveBusy;
+  $('packetValue').textContent=fmt(s?.packet_count??0);$('livePackets').textContent=fmt(s?.packet_count??0);$('captureHint').textContent=running?'Live capture active':'Monitoring inactive';$('liveInterface').textContent=safeText(s?.interface);$('liveError').textContent=s?.last_error?safeText(s.last_error):'';
+  return running;
+}
+async function refreshLive(){if(flowRefreshBusy)return;flowRefreshBusy=true;try{
+  const [status,flowsData]=await Promise.all([getJSON('/api/live/status'),getJSON('/api/live/flows')]);
+  const s=flowsData.status||status;updateLiveStatus(s);
+  const flows=Array.isArray(flowsData)?flowsData:Array.isArray(flowsData.flows)?flowsData.flows:[];
+  $('liveFlowCount').textContent=fmt(flows.length);
+  graphRender(flows,Boolean(s?.running));
+  if(!flows.length){setHTML('flowHead','<tr><th>Flow</th><th>Protocol</th><th>Packets</th><th>Bytes</th></tr>');setHTML('flowBody','<tr><td colspan="4" class="empty">No captured flows to display.</td></tr>');return;}
+  const preferred=['src_ip','dst_ip','src_port','dst_port','proto','protocol','service','packet_count','packets','byte_count','bytes','duration'];
+  const first=flows.find(f=>f&&typeof f==='object')||{};
+  const keys=preferred.filter(k=>Object.prototype.hasOwnProperty.call(first,k)).slice(0,7);
+  if(!keys.length)keys.push(...Object.keys(first).filter(k=>['string','number','boolean'].includes(typeof first[k])).slice(0,6));
+  if(!keys.length){setHTML('flowHead','<tr><th>Flow summary</th></tr>');setHTML('flowBody',flows.slice(0,30).map(f=>`<tr><td>${escapeHTML(JSON.stringify(f))}</td></tr>`).join(''));return;}
+  setHTML('flowHead',`<tr>${keys.map(k=>`<th>${escapeHTML(prettyName(k))}</th>`).join('')}</tr>`);
+  setHTML('flowBody',flows.slice(0,50).map(f=>`<tr>${keys.map(k=>`<td>${escapeHTML(safeText(f[k]))}</td>`).join('')}</tr>`).join(''));
+}catch(e){$('liveError').textContent=e.message;}finally{flowRefreshBusy=false;}}
+async function changeLive(action){if(liveBusy)return;liveBusy=true;$('startBtn').disabled=true;$('stopBtn').disabled=true;$('liveError').textContent='';try{await jsonPOST(`/api/live/${action}`,{});await refreshLive();}catch(e){$('liveError').textContent=e.message;await refreshLive();}finally{liveBusy=false;await refreshLive();}}
+$('predictBtn').addEventListener('click',runPrediction);$('anomalyBtn').addEventListener('click',runAnomaly);$('startBtn').addEventListener('click',()=>changeLive('start'));$('stopBtn').addEventListener('click',()=>changeLive('stop'));$('refreshBtn').addEventListener('click',refreshLive);
+document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',()=>{document.querySelectorAll('.nav a').forEach(x=>x.classList.remove('active'));a.classList.add('active');}));
+updateClock();setInterval(updateClock,30000);loadStatus();loadEvaluation();refreshLive();setInterval(async()=>{if(document.visibilityState==='visible'){await refreshLive();}},2000);setInterval(()=>{if(document.visibilityState==='visible')loadStatus();},30000);
+
+// Ambient particles are decorative only. No simulated flows, threats, or packets.
+(function initAmbientGraph(){
+  const canvas=document.getElementById('graphStars');
+  if(!canvas)return;
+  const ctx=canvas.getContext('2d');if(!ctx)return;
+  const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let w=0,h=0,particles=[],frame=0,raf=0;
+  function resize(){
+    const rect=canvas.getBoundingClientRect();w=Math.max(1,rect.width);h=Math.max(1,rect.height);
+    const ratio=Math.min(window.devicePixelRatio||1,2);canvas.width=Math.round(w*ratio);canvas.height=Math.round(h*ratio);ctx.setTransform(ratio,0,0,ratio,0,0);
+    particles=Array.from({length:Math.min(65,Math.max(20,Math.floor(w*h/9500)))},(_,i)=>({x:((i*71.7)%100)/100*w,y:((i*47.3)%100)/100*h,r:.5+(i%4)*.32,phase:i*1.9}));
+  }
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    for(const p of particles){const opacity=reduceMotion?.25:.18+.23*(.5+.5*Math.sin(frame*.014+p.phase));ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(80,222,252,${opacity})`;ctx.fill();}
+    if(!reduceMotion&&document.visibilityState==='visible'){frame++;raf=requestAnimationFrame(draw);}else{raf=0;}
+  }
+  const observer=new ResizeObserver(()=>{resize();if(!raf)draw();});observer.observe(canvas);
+  document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&!raf)draw();});
+  resize();draw();
+})();
+</script>
+</body>
+</html>

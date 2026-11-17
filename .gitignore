@@ -1,0 +1,89 @@
+# ==========================================
+# AIDAS - AI Cyberattack Detection System
+# ==========================================
+
+# Python virtual environments
+.venv/
+venv/
+env/
+
+# Python caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# UNSW-NB15 datasets and processed data
+data/raw/
+data/processed/
+
+# Trained machine learning models
+models/*.joblib
+models/*.pkl
+models/*.pickle
+
+# Captured network traffic
+*.pcap
+*.pcapng
+*.cap
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+*.bak
+*.swp
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# IDE settings
+.vscode/
+.idea/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Python packaging artifacts
+build/
+dist/
+*.egg-info/
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Test coverage
+.coverage
+htmlcov/
+# ==========================================
+# AIDAS - Local backups and generated results
+# ==========================================
+
+# Historical backup files
+*_backup.py
+*_backup.html
+*_before_*.html
+*_stage*_backup.html
+
+# Generated experiment data
+reports/*.csv
+
+# Local code review notes
+feature_pipeline_review.txt
+flow_tracker_integration_points.txt
+flow_tracker_review.txt
+live_capture_review.txt
