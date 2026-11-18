@@ -87,3 +87,8 @@ feature_pipeline_review.txt
 flow_tracker_integration_points.txt
 flow_tracker_review.txt
 live_capture_review.txt
+# AIDAS desktop packaging
+dist/
+build/
+installer_output/
+*.spec
